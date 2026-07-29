@@ -1,5 +1,17 @@
+---
+pipeline_tag: image-text-to-text
+language:
+- multilingual
+tags:
+- baidu
+- vision-language
+- ocr
+- custom_code
+license: mit
+library_name: transformers
+---
 <p align="center">
-  <img src="assets/baidu.png" width="40%" alt="Baidu Inc." />
+  <img src="assets/baidu.png" width="55%" alt="Baidu Inc." />
 </p>
 
 <hr>
@@ -8,7 +20,7 @@
 
 <div align="center">
 
-<a href="https://trendshift.io/repositories/62053?utm_source=trendshift-badge&amp;utm_medium=badge&amp;utm_campaign=badge-trendshift-62053" target="_blank" rel="noopener noreferrer"><img src="https://trendshift.io/api/badge/trendshift/repositories/62053/daily" alt="baidu%2FUnlimited-OCR | Trendshift" width="250" height="55"/></a>
+  <a href="https://trendshift.io/repositories/62053?utm_source=trendshift-badge&amp;utm_medium=badge&amp;utm_campaign=badge-trendshift-62053" target="_blank" rel="noopener noreferrer"><img src="https://trendshift.io/api/badge/trendshift/repositories/62053/daily" alt="baidu%2FUnlimited-OCR | Trendshift" width="250" height="55"/></a>
   
   <a href="https://github.com/baidu/Unlimited-OCR">
     <img alt="GitHub" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&logoColor=white" />
@@ -268,30 +280,6 @@ generate("Multi page parsing.", ["page1.png", "page2.png"], image_mode="base", n
 generate("Multi page parsing.", pdf_to_images("your_doc.pdf", dpi=300), image_mode="base", ngram_window=1024)
 ```
 
-For batch inference, `infer.py` starts the SGLang server automatically and sends concurrent requests for an image directory or PDF:
-```shell
-# Image directory
-python infer.py \
-    --image_dir ./examples/images \
-    --output_dir ./outputs \
-    --concurrency 8 \
-    --image_mode gundam
-
-# PDF pages
-python infer.py \
-    --pdf ./examples/document.pdf \
-    --output_dir ./outputs \
-    --concurrency 8 \
-    --image_mode gundam
-```
-
-Useful options:
-```shell
---model_dir baidu/Unlimited-OCR   # Local path or Hugging Face model ID
---gpu 0                           # CUDA_VISIBLE_DEVICES value
---server_log ./log/sglang_server.log
-```
-
 For OmniDocBench evaluation, you need to perform the following post-processing.
 ```python
 def remove_det(raw: str) -> str:
@@ -322,6 +310,7 @@ def remove_det(raw: str) -> str:
     text = '\n\n'.join('\n'.join(b) for b in blocks).strip()
     return text
 ```
+
 
 ## Visualization
 
