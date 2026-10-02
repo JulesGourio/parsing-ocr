@@ -35,3 +35,8 @@ log/
 Thumbs.db
 .vscode/
 .idea/
+
+# Heavy artefacts: keep out of git and LFS
+model_part_*
+*.whl
+*.safetensors
